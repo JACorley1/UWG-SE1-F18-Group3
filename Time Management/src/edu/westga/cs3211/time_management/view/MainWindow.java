@@ -14,7 +14,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -29,6 +31,10 @@ public class MainWindow {
     @FXML private URL location;
     @FXML private ListView<Event> eventList;
     @FXML private TextArea eventDetailsText;
+    @FXML private RadioButton dateRadio;
+    @FXML private ToggleGroup sortGroup;
+    @FXML private RadioButton nameRadio;
+    @FXML private RadioButton locationRadio;
     
     private Calendar calendar;
 
@@ -49,6 +55,18 @@ public class MainWindow {
 
         this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
     }
+    
+    @FXML
+    void removeEvent(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void updateEvent(ActionEvent event) {
+
+    }
+    
+    
     
     @FXML
     void selectEvent(MouseEvent event) {
