@@ -58,6 +58,7 @@ public class MainWindow {
     
     @FXML
     void removeEvent(ActionEvent event) {
+    	
 
     }
     

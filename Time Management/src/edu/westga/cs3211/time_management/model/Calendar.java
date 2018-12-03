@@ -72,4 +72,18 @@ public class Calendar {
 		
 		return conflicts;
 	}
+	/**Removes event from the Calendar 
+	 * 
+	 * @precondition event != null
+	 * @postcondition getEvents().size() == getEvents().size()@pre - 1
+	 * 
+	 * @param event event to be added to the calendar
+	 * @return true if an event is removed false otherwise
+	 */
+	public boolean removeEvent(Event event) {
+		if(event == null) {
+			throw new IllegalArgumentException("Event cannot be null");
+		}
+		return this.events.remove(event);
+	}
 }
