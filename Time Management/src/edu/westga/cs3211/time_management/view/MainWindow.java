@@ -21,69 +21,74 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-/** Codebehind for the MainWindow Scene.
+/**
+ * Codebehind for the MainWindow Scene.
  * 
  * @author Jonathan Corley
  */
 public class MainWindow {
 
-    @FXML private ResourceBundle resources;
-    @FXML private URL location;
-    @FXML private ListView<Event> eventList;
-    @FXML private TextArea eventDetailsText;
-    @FXML private RadioButton dateRadio;
-    @FXML private ToggleGroup sortGroup;
-    @FXML private RadioButton nameRadio;
-    @FXML private RadioButton locationRadio;
-    
-    private Calendar calendar;
+	@FXML
+	private ResourceBundle resources;
+	@FXML
+	private URL location;
+	@FXML
+	private ListView<Event> eventList;
+	@FXML
+	private TextArea eventDetailsText;
+	@FXML
+	private RadioButton dateRadio;
+	@FXML
+	private ToggleGroup sortGroup;
+	@FXML
+	private RadioButton nameRadio;
+	@FXML
+	private RadioButton locationRadio;
 
-    @FXML
-    void addEvent(ActionEvent event) throws IOException {
-    	FXMLLoader loader = new FXMLLoader();
-    	loader.setLocation(Main.class.getResource("view/AddEvent.fxml"));
-    	loader.load();
-    	Parent parent= loader.getRoot();
-    	Scene scene= new Scene(parent);
-    	Stage addEventStage= new Stage();
-    	addEventStage.setTitle("Add New Event");
-    	addEventStage.setScene(scene);
-    	addEventStage.initModality(Modality.APPLICATION_MODAL);
-    	AddEvent addEventDialog = loader.getController();
-    	addEventDialog.setCalendar(this.calendar);
-    	addEventStage.showAndWait();
+	private Calendar calendar;
 
-        this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
-    }
-    
-    @FXML
-    void removeEvent(ActionEvent event) {
-    	
+	@FXML
+	void addEvent(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("view/AddEvent.fxml"));
+		loader.load();
+		Parent parent = loader.getRoot();
+		Scene scene = new Scene(parent);
+		Stage addEventStage = new Stage();
+		addEventStage.setTitle("Add New Event");
+		addEventStage.setScene(scene);
+		addEventStage.initModality(Modality.APPLICATION_MODAL);
+		AddEvent addEventDialog = loader.getController();
+		addEventDialog.setCalendar(this.calendar);
+		addEventStage.showAndWait();
 
-    }
-    
-    @FXML
-    void updateEvent(ActionEvent event) {
+		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
+	}
 
-    }
-    
-    
-    
-    @FXML
-    void selectEvent(MouseEvent event) {
-    	Event eventSelected = this.eventList.getSelectionModel().getSelectedItem();
-    	if(eventSelected != null) {
-    		this.eventDetailsText.setText(eventSelected.toStringFull());
-    	}
-    }
+	@FXML
+	void removeEvent(ActionEvent event) {
 
-    @FXML
-    void initialize() {
-        assert eventList != null : "fx:id=\"eventList\" was not injected: check your FXML file 'MainWindow.fxml'.";
-        assert eventDetailsText != null : "fx:id=\"eventDetailsText\" was not injected: check your FXML file 'MainWindow.fxml'.";
+	}
 
-        this.calendar = new Calendar();
-        this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
-    }
+	@FXML
+	void updateEvent(ActionEvent event) {
+
+	}
+
+	@FXML
+	void selectEvent(MouseEvent event) {
+		Event eventSelected = this.eventList.getSelectionModel().getSelectedItem();
+		if (eventSelected != null) {
+			this.eventDetailsText.setText(eventSelected.toStringFull());
+		}
+	}
+
+	@FXML
+	void initialize() {
+		assert this.eventList != null : "fx:id=\"eventList\" was not injected: check your FXML file 'MainWindow.fxml'.";
+		assert this.eventDetailsText != null : "fx:id=\"eventDetailsText\" was not injected: check your FXML file 'MainWindow.fxml'.";
+
+		this.calendar = new Calendar();
+		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
+	}
 }
-

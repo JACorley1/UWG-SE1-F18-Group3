@@ -11,6 +11,7 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 
 /**
+ * The view model of the time management system.
  * @author Jeremiah Liscum
  *
  */
