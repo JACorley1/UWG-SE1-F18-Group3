@@ -168,7 +168,7 @@ public class AddEvent {
 		assert this.descriptionLabel != null : "fx:id=\"descriptionLabel\" was not injected: check your FXML file 'AddEvent.fxml'.";
 		assert this.visibilityList != null : "fx:id=\"visibilityList\" was not injected: check your FXML file 'AddEvent.fxml'.";
 		assert this.nameLabel != null : "fx:id=\"nameLabel\" was not injected: check your FXML file 'AddEvent.fxml'.";
-
+		
 		this.attendeesList.setItems(FXCollections.observableArrayList());
 		this.visibilityList.setItems(FXCollections.observableArrayList());
 		this.visibilityList.getItems().add(Visibility.PUBLIC);
@@ -178,6 +178,7 @@ public class AddEvent {
 		this.startTimeDate.setValue(LocalDate.now());
 		this.endTimeDate.setValue(LocalDate.now());
 	}
+	
 
 	/**
 	 * Sets the calendar.

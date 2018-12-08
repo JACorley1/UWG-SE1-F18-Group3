@@ -67,11 +67,16 @@ public class MainWindow {
 
 	@FXML
 	void removeEvent(ActionEvent event) {
-
+		this.calendar.removeEvent(this.eventList.getSelectionModel().getSelectedItem());
+		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
+		this.eventDetailsText.clear();
+		
+		
 	}
 
 	@FXML
 	void updateEvent(ActionEvent event) {
+		
 
 	}
 
@@ -90,5 +95,9 @@ public class MainWindow {
 
 		this.calendar = new Calendar();
 		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
+
+	}
+	private void bindToViewModel() {
+		
 	}
 }
