@@ -75,8 +75,20 @@ public class MainWindow {
 	}
 
 	@FXML
-	void updateEvent(ActionEvent event) {
-		
+	void updateEvent(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("view/UpdateEvent.fxml"));
+		loader.load();
+		Parent parent = loader.getRoot();
+		Scene scene = new Scene(parent);
+		Stage addEventStage = new Stage();
+		addEventStage.setTitle("Add New Event");
+		addEventStage.setScene(scene);
+		addEventStage.initModality(Modality.APPLICATION_MODAL);
+		AddEvent addEventDialog = loader.getController();
+		addEventDialog.setCalendar(this.calendar);
+		addEventStage.showAndWait();
+	
 
 	}
 
@@ -95,9 +107,9 @@ public class MainWindow {
 
 		this.calendar = new Calendar();
 		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
+		
+		
 
 	}
-	private void bindToViewModel() {
-		
-	}
+	
 }
