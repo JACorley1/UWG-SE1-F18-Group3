@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
@@ -40,6 +41,14 @@ public class MainWindow {
 	private RadioButton dateRadio;
 	@FXML
 	private ToggleGroup sortGroup;
+	
+	 @FXML
+	 private Button removeButton;
+
+	 @FXML
+	 private Button updateButton;
+
+	
 	@FXML
 	private RadioButton nameRadio;
 	@FXML
@@ -82,12 +91,15 @@ public class MainWindow {
 		Parent parent = loader.getRoot();
 		Scene scene = new Scene(parent);
 		Stage addEventStage = new Stage();
-		addEventStage.setTitle("Add New Event");
+		addEventStage.setTitle("Update Selected Event");
+		
 		addEventStage.setScene(scene);
 		addEventStage.initModality(Modality.APPLICATION_MODAL);
-		AddEvent addEventDialog = loader.getController();
-		addEventDialog.setCalendar(this.calendar);
+		UpdateEvent updateEventDialog = loader.getController();
+		updateEventDialog.setCalendar(this.calendar);
 		addEventStage.showAndWait();
+
+		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
 		this.sortCalendarEvents();
 
 	}
@@ -99,6 +111,14 @@ public class MainWindow {
 			this.eventDetailsText.setText(eventSelected.toStringFull());
 		}
 	}
+	
+	
+	private void InitalizeDisableButton() {
+		this.removeButton.disableProperty().bind(this.eventList.getSelectionModel().selectedItemProperty().isNull());
+		this.updateButton.disableProperty().bind(this.eventList.getSelectionModel().selectedItemProperty().isNull());
+
+	}
+	
 
 	@FXML
 	void sortEvents(MouseEvent event) {
@@ -112,6 +132,7 @@ public class MainWindow {
 
 		this.calendar = new Calendar();
 		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
+		this.InitalizeDisableButton();
 
 	}
 
