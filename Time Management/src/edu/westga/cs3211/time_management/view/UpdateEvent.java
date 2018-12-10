@@ -198,6 +198,22 @@ public class UpdateEvent {
 		}
 		this.calendar = calendar;
 	}
+	/**
+	 * 
+	 * @param event
+	 */
+	public void setFields(Event event) {
+		this.descriptionText.setText(event.getDescription());
+		this.nameText.setText(event.getName());
+		this.startTimeDate.setValue(event.getStartTime().toLocalDate());
+		this.endTimeDate.setValue(event.getEndTime().toLocalDate());
+		this.attendeesList.setItems(FXCollections.observableArrayList(event.getAttendees()));
+		this.locationText.setText(event.getLocation());
+		this.visibilityList.setValue(event.getVisibility());
+		
+		
+		
+	}
     
 	   
 }
