@@ -61,7 +61,7 @@ public class MainWindow {
 		AddEvent addEventDialog = loader.getController();
 		addEventDialog.setCalendar(this.calendar);
 		addEventStage.showAndWait();
-
+		this.sortCalendarEvents();
 		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
 	}
 
@@ -70,8 +70,8 @@ public class MainWindow {
 		this.calendar.removeEvent(this.eventList.getSelectionModel().getSelectedItem());
 		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
 		this.eventDetailsText.clear();
-		
-		
+		this.sortCalendarEvents();
+
 	}
 
 	@FXML
@@ -88,7 +88,7 @@ public class MainWindow {
 		AddEvent addEventDialog = loader.getController();
 		addEventDialog.setCalendar(this.calendar);
 		addEventStage.showAndWait();
-	
+		this.sortCalendarEvents();
 
 	}
 
@@ -101,15 +101,28 @@ public class MainWindow {
 	}
 
 	@FXML
+	void sortEvents(MouseEvent event) {
+		this.sortCalendarEvents();
+	}
+
+	@FXML
 	void initialize() {
 		assert this.eventList != null : "fx:id=\"eventList\" was not injected: check your FXML file 'MainWindow.fxml'.";
 		assert this.eventDetailsText != null : "fx:id=\"eventDetailsText\" was not injected: check your FXML file 'MainWindow.fxml'.";
 
 		this.calendar = new Calendar();
 		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
-		
-		
 
 	}
-	
+
+	private void sortCalendarEvents() {
+		if (this.dateRadio.isSelected()) {
+			this.calendar.sortByName();
+		} else if (this.nameRadio.isSelected()) {
+			this.calendar.sortByName();
+		} else {
+			this.calendar.sortByLocation();
+		}
+	}
+
 }

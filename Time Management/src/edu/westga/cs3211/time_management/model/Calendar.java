@@ -1,7 +1,9 @@
 package edu.westga.cs3211.time_management.model;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Store and manage a collection of events.
@@ -100,4 +102,61 @@ public class Calendar {
 		}
 		return this.events.remove(event);
 	}
+	
+	
+	/**
+	 * Sorts the events by date.
+	 * 
+	 * @precondition none
+	 * @postcondition the collection is sorted
+	 */
+	public void sortByDate() {
+		java.util.Collections.sort(this.events, new Comparator<Event>() {
+
+
+			@Override
+			public int compare(Event arg0, Event arg1) {
+				return arg0.getStartTime().compareTo(arg1.getStartTime());
+			}
+			
+		});
+		
+	}
+	
+	/**
+	 * Sorts the events by name.
+	 * 
+	 * @precondition none
+	 * @postcondition the collection is sorted
+	 */
+	public void sortByName() {
+		java.util.Collections.sort(this.events, new Comparator<Event>() {
+
+
+			@Override
+			public int compare(Event arg0, Event arg1) {
+				return arg0.getName().compareTo(arg1.getName());
+			}
+			
+		});
+	}
+	
+	/**
+	 * Sorts the events by location.
+	 * 
+	 * @precondition none
+	 * @postcondition the collection is sorted
+	 */
+	public void sortByLocation() {
+		java.util.Collections.sort(this.events, new Comparator<Event>() {
+
+
+			@Override
+			public int compare(Event arg0, Event arg1) {
+				return arg0.getLocation().compareTo(arg1.getLocation());
+			}
+			
+		});
+	}
+	
 }

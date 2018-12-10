@@ -16,13 +16,13 @@
       <Button layoutX="14.0" layoutY="597.0" mnemonicParsing="false" onAction="#addEvent" text="Add" />
       <Button layoutX="60.0" layoutY="597.0" mnemonicParsing="false" onAction="#removeEvent" text="Remove" />
       <Button layoutX="130.0" layoutY="597.0" mnemonicParsing="false" onAction="#updateEvent" text="Update" />
-      <RadioButton fx:id="dateRadio" layoutX="371.0" layoutY="594.0" mnemonicParsing="false" selected="true" text="Date">
+      <RadioButton fx:id="dateRadio" layoutX="371.0" layoutY="594.0" mnemonicParsing="false" onMouseClicked="#sortEvents" selected="true" text="Date">
          <toggleGroup>
             <ToggleGroup fx:id="sortGroup" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="nameRadio" layoutX="371.0" layoutY="614.0" mnemonicParsing="false" text="Name" toggleGroup="$sortGroup" />
-      <RadioButton fx:id="locationRadio" layoutX="371.0" layoutY="637.0" mnemonicParsing="false" text="Location" toggleGroup="$sortGroup" />
+      <RadioButton fx:id="nameRadio" layoutX="371.0" layoutY="614.0" mnemonicParsing="false" onMouseClicked="#sortEvents" text="Name" toggleGroup="$sortGroup" />
+      <RadioButton fx:id="locationRadio" layoutX="371.0" layoutY="637.0" mnemonicParsing="false" onMouseClicked="#sortEvents" text="Location" toggleGroup="$sortGroup" />
       <Label layoutX="86.0" layoutY="6.0" text="Event Details">
          <font>
             <Font size="22.0" />
