@@ -91,12 +91,15 @@ public class MainWindow {
 		Parent parent = loader.getRoot();
 		Scene scene = new Scene(parent);
 		Stage addEventStage = new Stage();
-		addEventStage.setTitle("Add New Event");
+		addEventStage.setTitle("Update Selected Event");
+		
 		addEventStage.setScene(scene);
 		addEventStage.initModality(Modality.APPLICATION_MODAL);
-		AddEvent addEventDialog = loader.getController();
-		addEventDialog.setCalendar(this.calendar);
+		UpdateEvent updateEventDialog = loader.getController();
+		updateEventDialog.setCalendar(this.calendar);
 		addEventStage.showAndWait();
+
+		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
 	
 
 	}

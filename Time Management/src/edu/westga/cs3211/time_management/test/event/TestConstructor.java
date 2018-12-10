@@ -24,6 +24,10 @@ class TestConstructor {
 							new Event(null, start, end, "", "", attendees, Visibility.PUBLIC);
 						}
 					);
+		
+
+
+		
 	}
 
 	@Test
