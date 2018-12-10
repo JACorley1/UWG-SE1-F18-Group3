@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
@@ -40,6 +41,14 @@ public class MainWindow {
 	private RadioButton dateRadio;
 	@FXML
 	private ToggleGroup sortGroup;
+	
+	 @FXML
+	 private Button removeButton;
+
+	 @FXML
+	 private Button updateButton;
+
+	
 	@FXML
 	private RadioButton nameRadio;
 	@FXML
@@ -99,6 +108,14 @@ public class MainWindow {
 			this.eventDetailsText.setText(eventSelected.toStringFull());
 		}
 	}
+	
+	
+	private void InitalizeDisableButton() {
+		this.removeButton.disableProperty().bind(this.eventList.getSelectionModel().selectedItemProperty().isNull());
+		this.updateButton.disableProperty().bind(this.eventList.getSelectionModel().selectedItemProperty().isNull());
+
+	}
+	
 
 	@FXML
 	void initialize() {
@@ -107,7 +124,7 @@ public class MainWindow {
 
 		this.calendar = new Calendar();
 		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
-		
+		this.InitalizeDisableButton();
 		
 
 	}
