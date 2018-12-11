@@ -29,6 +29,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 
 /**
+ * Handles updating the event.
+ * 
  * @author Jeremiah Liscum
  *
  */
@@ -56,10 +58,10 @@ public class UpdateEvent {
 	private Label nameLabel;
 	@FXML
 	private TextField locationText;
-	
+
 	@FXML
 	private Button updateButton;
-	
+
 	@FXML
 	private TextField descriptionText;
 	@FXML
@@ -76,7 +78,7 @@ public class UpdateEvent {
 	private ComboBox<Visibility> visibilityList;
 
 	private Event oldEvent;
-	
+
 	private Calendar calendar;
 
 	private void displayErrorMessage(String errorMessage) {
@@ -105,8 +107,8 @@ public class UpdateEvent {
 		((Node) (event.getSource())).getScene().getWindow().hide();
 	}
 
-	 @FXML
-	 void updateEvent(ActionEvent event) {
+	@FXML
+	void updateEvent(ActionEvent event) {
 		String errorText = "";
 		String name = this.nameText.getText();
 		if (!EventDataValidator.checkName(name)) {
@@ -178,7 +180,7 @@ public class UpdateEvent {
 		assert this.descriptionLabel != null : "fx:id=\"descriptionLabel\" was not injected: check your FXML file 'UpdateEvent.fxml'.";
 		assert this.visibilityList != null : "fx:id=\"visibilityList\" was not injected: check your FXML file 'UpdateEvent.fxml'.";
 		assert this.nameLabel != null : "fx:id=\"nameLabel\" was not injected: check your FXML file 'UpdateEvent.fxml'.";
-		
+
 		this.attendeesList.setItems(FXCollections.observableArrayList());
 		this.visibilityList.setItems(FXCollections.observableArrayList());
 		this.visibilityList.getItems().add(Visibility.PUBLIC);
@@ -188,7 +190,6 @@ public class UpdateEvent {
 		this.startTimeDate.setValue(LocalDate.now());
 		this.endTimeDate.setValue(LocalDate.now());
 	}
-	
 
 	/**
 	 * Sets the calendar.
@@ -201,9 +202,11 @@ public class UpdateEvent {
 		}
 		this.calendar = calendar;
 	}
+
 	/**
+	 * Sets the fields.
 	 * 
-	 * @param event
+	 * @param event the event.
 	 */
 	public void setFields(Event event) {
 		this.oldEvent = event;
@@ -214,10 +217,7 @@ public class UpdateEvent {
 		this.attendeesList.setItems(FXCollections.observableArrayList(event.getAttendees()));
 		this.locationText.setText(event.getLocation());
 		this.visibilityList.setValue(event.getVisibility());
-		
-		
-		
+
 	}
-    
-	   
+
 }

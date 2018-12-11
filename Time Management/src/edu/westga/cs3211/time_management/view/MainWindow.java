@@ -31,26 +31,31 @@ public class MainWindow {
 
 	@FXML
 	private ResourceBundle resources;
+
 	@FXML
 	private URL location;
+
 	@FXML
 	private ListView<Event> eventList;
+
 	@FXML
 	private TextArea eventDetailsText;
+
 	@FXML
 	private RadioButton dateRadio;
+
 	@FXML
 	private ToggleGroup sortGroup;
-	
-	 @FXML
-	 private Button removeButton;
 
-	 @FXML
-	 private Button updateButton;
+	@FXML
+	private Button removeButton;
 
-	
+	@FXML
+	private Button updateButton;
+
 	@FXML
 	private RadioButton nameRadio;
+
 	@FXML
 	private RadioButton locationRadio;
 
@@ -92,16 +97,16 @@ public class MainWindow {
 		Scene scene = new Scene(parent);
 		Stage addEventStage = new Stage();
 		addEventStage.setTitle("Update Selected Event");
-		
+
 		addEventStage.setScene(scene);
 		addEventStage.initModality(Modality.APPLICATION_MODAL);
 		UpdateEvent updateEventDialog = loader.getController();
 		updateEventDialog.setFields(this.eventList.getSelectionModel().getSelectedItem());
 		updateEventDialog.setCalendar(this.calendar);
 		addEventStage.showAndWait();
-		
+
 		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
-		
+
 		this.sortCalendarEvents();
 
 	}
@@ -113,18 +118,17 @@ public class MainWindow {
 			this.eventDetailsText.setText(eventSelected.toStringFull());
 		}
 	}
-	
-	
-	private void InitalizeDisableButton() {
+
+	private void initalizeDisableButton() {
 		this.removeButton.disableProperty().bind(this.eventList.getSelectionModel().selectedItemProperty().isNull());
 		this.updateButton.disableProperty().bind(this.eventList.getSelectionModel().selectedItemProperty().isNull());
 
 	}
-	
 
 	@FXML
-	void sortEvents(MouseEvent event) {
+	void sortEvents(ActionEvent event) {
 		this.sortCalendarEvents();
+
 	}
 
 	@FXML
@@ -134,18 +138,19 @@ public class MainWindow {
 
 		this.calendar = new Calendar();
 		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
-		this.InitalizeDisableButton();
+		this.initalizeDisableButton();
 
 	}
 
 	private void sortCalendarEvents() {
 		if (this.dateRadio.isSelected()) {
-			this.calendar.sortByName();
+			this.calendar.sortByDate();
 		} else if (this.nameRadio.isSelected()) {
 			this.calendar.sortByName();
 		} else {
 			this.calendar.sortByLocation();
 		}
+		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
 	}
 
 }

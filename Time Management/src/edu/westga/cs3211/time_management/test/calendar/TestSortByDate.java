@@ -6,8 +6,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -96,7 +94,7 @@ class TestSortByDate {
 		assertTrue(firstCheck);
 		assertTrue(secondCheck);
 	}
-	
+
 	@Test
 	void testCollectionWithMultipleEntriesErliestInThirdSlot() {
 		this.testCalendar.addEvent(testEvent2);
