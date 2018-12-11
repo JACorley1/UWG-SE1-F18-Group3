@@ -75,6 +75,8 @@ public class UpdateEvent {
 	@FXML
 	private ComboBox<Visibility> visibilityList;
 
+	private Event oldEvent;
+	
 	private Calendar calendar;
 
 	private void displayErrorMessage(String errorMessage) {
@@ -153,6 +155,7 @@ public class UpdateEvent {
 		Optional<ButtonType> result = alert.showAndWait();
 
 		if (result.isPresent() && result.get() == ButtonType.OK) {
+			this.calendar.removeEvent(this.oldEvent);
 			this.calendar.addEvent(newEvent);
 			((Node) (event.getSource())).getScene().getWindow().hide();
 		}
@@ -203,6 +206,7 @@ public class UpdateEvent {
 	 * @param event
 	 */
 	public void setFields(Event event) {
+		this.oldEvent = event;
 		this.descriptionText.setText(event.getDescription());
 		this.nameText.setText(event.getName());
 		this.startTimeDate.setValue(event.getStartTime().toLocalDate());
