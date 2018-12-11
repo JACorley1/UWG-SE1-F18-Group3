@@ -128,5 +128,6 @@ class TestConstructor {
 		assertEquals(attendees, result.getAttendees(), "checking attendees");
 		assertEquals(Visibility.PUBLIC, result.getVisibility(), "checking visibility");
 	}
+	
 
 }
